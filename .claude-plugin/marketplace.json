@@ -1,6 +1,6 @@
 {
   "name": "nano-banana-marketplace",
-  "description": "Ibrahim-3d's Nano Banana - Google Gemini 3.1 image generation plugin for Claude Code.",
+  "description": "Nano Banana — Google Gemini 3.1 AI image generation & editing plugin for Claude Code. Supports text-to-image, inpainting, style transfer, 4K generation, search-grounded generation, and 14-image multi-reference composition.",
   "version": "1.0.0",
   "owner": {
     "name": "Ibrahim-3d",
@@ -10,7 +10,7 @@
     {
       "name": "nano-banana",
       "version": "1.3.0",
-      "description": "AI image generation for Claude Code powered by Google Gemini 3.1 API (Nano Banana 2).",
+      "description": "AI image generation & editing for Claude Code powered by Google Gemini 3.1 API. Text-to-image, inpainting, style transfer, 4K upscaling, search grounding, and multi-reference composition.",
       "source": {
         "type": "github",
         "repo": "Ibrahim-3d/nano-banana-claude-plugin",

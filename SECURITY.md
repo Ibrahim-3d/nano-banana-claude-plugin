@@ -14,4 +14,7 @@ If you discover a security vulnerability, please open a private issue on GitHub 
 
 | Version | Supported |
 |---------|-----------|
-| 1.0.x   | Yes       |
+| 1.3.x   | ✅ Yes    |
+| 1.2.x   | ✅ Yes    |
+| 1.1.x   | ⚠️ Best-effort |
+| < 1.1   | ❌ No     |
