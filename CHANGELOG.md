@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.0.0] - 2026-03-25
+
+### Changed
+- Consolidated eight specialized generation scripts (`texttoimage.py`, `imageedit.py`,
+  `hires.py`, `compose.py`, `multiref.py`, `styletransfer.py`, `searchground.py`,
+  `multiturn.py`) into a single universal `scripts/genimage.py`.
+- Model selection is now automatic: `--resolution` triggers Nano Banana Pro; everything
+  else uses Nano Banana 2.
+- Style transfer is now expressed via `--images style.png source.png` plus a descriptive
+  prompt, eliminating the `--style-image` flag.
+
+### Removed
+- `scripts/searchground.py` — Google Search grounding is redundant when the plugin is
+  called by a language model that already has search capability.
+- `scripts/multiturn.py` — multi-turn conversation is managed by Claude, not the script;
+  the old implementation was stateless and misleading.
+- All now-merged scripts: `texttoimage.py`, `imageedit.py`, `hires.py`, `compose.py`,
+  `multiref.py`, `styletransfer.py`.
+
 ## [1.3.0] - 2026-03-19
 
 ### Added

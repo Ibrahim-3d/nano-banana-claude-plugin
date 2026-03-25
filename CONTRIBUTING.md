@@ -15,11 +15,11 @@ Thanks for your interest in contributing to the Nano Banana plugin! Contribution
 
 ## Adding a New Generation Mode
 
-1. Create a new Python script in `scripts/` following the existing pattern (see `texttoimage.py` as a reference)
-2. Add the script to the decision tree in `commands/genimage.md`
-3. Add the script to the agent at `agents/gemini-image-gen.md`
+1. Extend `scripts/genimage.py` with the new flags or behavior
+2. Update `commands/genimage.md` with the new mode
+3. Update the agent at `agents/gemini-image-gen.md`
 4. Update the skill at `skills/genimage/SKILL.md`
-5. Update `README.md` with the new mode (Features table + Scripts Reference table)
+5. Update `README.md` with the new mode
 6. Update `CHANGELOG.md`
 
 ## Script Conventions

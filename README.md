@@ -27,7 +27,7 @@
 
 ## What is Nano Banana 2?
 
-**Nano Banana 2** brings Google Gemini 3.1's state-of-the-art image generation and editing capabilities directly into [Claude Code](https://claude.ai/claude-code). It ships a smart `/genimage` slash command, an autonomous Gemini image agent, and eight specialized Python scripts covering every generation and editing workflow — all wired together so you never leave your coding environment.
+**Nano Banana 2** brings Google Gemini 3.1's state-of-the-art image generation and editing capabilities directly into [Claude Code](https://claude.ai/claude-code). It ships a smart `/genimage` slash command, an autonomous Gemini image agent, and a single universal Python script covering every generation and editing workflow — all wired together so you never leave your coding environment.
 
 > **Just type `/genimage` and describe what you want.** The agent picks the right script, enhances your prompt, and runs the generation automatically.
 
@@ -145,8 +145,14 @@ That's it — Nano Banana handles the rest.
 
 ### Multi-Turn Iterative Editing
 
+Use image editing with follow-up calls, passing the previously generated image back as input:
+
 ```bash
-/genimage start a multi-turn session — generate a cozy cafe interior, then I'll refine it
+# Step 1 — generate a base image
+/genimage a cozy cafe interior, warm lighting, 4:3
+
+# Step 2 — refine the previous output
+/genimage add a cat sleeping on the counter --images generated_image.png
 ```
 
 ---
@@ -160,18 +166,33 @@ That's it — Nano Banana handles the rest.
 
 ---
 
-## Scripts Reference
+## Script Reference
 
-| Script | Purpose | Model |
-|--------|---------|-------|
-| `texttoimage.py` | Text-to-image (no input image) | Nano Banana 2 |
-| `imageedit.py` | Edit image with text (inpaint, add/remove, etc.) | Nano Banana 2 |
-| `styletransfer.py` | Apply one image's style to another | Nano Banana 2 |
-| `compose.py` | Combine elements from multiple images | Nano Banana 2 |
-| `multiref.py` | Generate using up to 14 reference images | Nano Banana 2 |
-| `hires.py` | 2K or 4K resolution generation | Nano Banana Pro |
-| `searchground.py` | Search-grounded generation | Nano Banana 2 |
-| `multiturn.py` | Multi-turn chat-based iterative editing | Nano Banana 2 |
+All image generation is handled by a **single universal script**:
+
+```
+python "$CLAUDE_PLUGIN_ROOT/scripts/genimage.py" --prompt "..." [options]
+```
+
+| Mode | How to invoke |
+|------|--------------|
+| **Text-to-image** | `--prompt "..."` (no `--images`) |
+| **Image editing** | `--prompt "edit instructions" --images source.png` |
+| **Style transfer** | `--prompt "Apply the style of the first image to the second" --images style.png source.png` |
+| **Multi-image composition / reference** | `--prompt "..." --images a.png b.png [c.png ...]` (up to 14) |
+| **High-resolution (2K / 4K)** | add `--resolution 2K` or `--resolution 4K` to any mode above |
+
+High-resolution mode automatically uses **Nano Banana Pro**. All other modes use **Nano Banana 2**.
+
+### Flags
+
+| Flag | Description |
+|------|-------------|
+| `--prompt "text"` | Required — generation or editing instructions |
+| `--output filename.png` | Output filename (default: `generated_image.png`) |
+| `--images path [path ...]` | Input image(s) — omit for pure text-to-image |
+| `--aspect-ratio` | `1:1`, `16:9`, `9:16`, `4:3`, `3:4`, `21:9`, and more |
+| `--resolution 1K\|2K\|4K` | High-res output (triggers Pro model) |
 
 ---
 
