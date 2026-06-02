@@ -1,5 +1,5 @@
 ---
-name: genimage
+name: image
 description: Generate, edit, or create any image — photos, illustrations, website visuals, placeholders, icons, thumbnails, banners, or any graphic asset
 argument-hint: describe what image you want to generate or edit
 user_invocable: true
