@@ -2,8 +2,13 @@
   "hooks": {
     "SessionStart": [
       {
-        "type": "command",
-        "command": "python \"$CLAUDE_PLUGIN_ROOT/scripts/check_env.py\""
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PLUGIN_ROOT/scripts/check_env.py\""
+          }
+        ]
       }
     ]
   }
